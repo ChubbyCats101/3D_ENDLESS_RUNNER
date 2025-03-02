@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     // ค่าที่ใช้เพิ่มความเร็วเมื่อผู้เล่นได้คะแนน
     public float speedIncreasePerPoint = 0.1f;
 
+    public GameManager gameManager;
+
+
     private void FixedUpdate()
     {
         // ถ้าผู้เล่นตายแล้ว ให้หยุดการทำงาน
@@ -52,14 +55,9 @@ public class PlayerMovement : MonoBehaviour
         // กำหนดค่า alive เป็น false เพื่อหยุดการเคลื่อนที่
         alive = false;
 
-        // รีสตาร์ทเกมหลังจากผ่านไป 1 วินาที
-        Invoke("Restart", 1);
+        gameManager.gameOver();
+
+        
     }
 
-    // ฟังก์ชันรีสตาร์ทเกม
-    private void Restart()
-    {
-        // โหลดซีนปัจจุบันใหม่ เพื่อเริ่มเกมใหม่
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 }
